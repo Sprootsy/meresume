@@ -1,0 +1,11 @@
+# JEKYLL
+_site
+.sass-cache
+.jekyll-metadata
+
+# RUBY
+vendor
+
+# IDEs
+.vscode
+.idea
