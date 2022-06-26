@@ -1,4 +1,4 @@
-name: site-build
+name: Site Build
 on: [push]
 jobs:
   build:

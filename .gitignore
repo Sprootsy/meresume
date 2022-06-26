@@ -29,11 +29,4 @@ yarn-error.log*
 
 # production
 /build
-/index.html
-/assets
-/static
-/favicon.ico
-/manifest.json
-/robots.txt
-/asset-manifest.json
 coverage

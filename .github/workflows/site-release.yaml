@@ -13,16 +13,13 @@ jobs:
           node-version: '18'
       - name: Install Yarn
         working-directory: ./web
-        run:
-          npm install --global yarn
+        run: npm install --global yarn
       - name: Install dependencies
         working-directory: ./web
-        run:
-          yarn
+        run: yarn
       - name: Web Prod Build
         working-directory: ./web
-        run:
-          yarn build
+        run: yarn build && cp -vrf build/* ../ && rm -rf build
       # https://github.com/marketplace/actions/add-commit
       - uses: EndBug/add-and-commit@v9
         with:
