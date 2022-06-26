@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Container, List, Link, ListItem} from '@mui/material';
+import {List, Link, ListItem} from '@mui/material';
 
 import './App.css';
 
@@ -22,7 +22,8 @@ export function ContactsBar(props) {
                                     <Link href={extLink['url']} 
                                         className={"App-logo-link"}
                                         target={"_blank"}>
-                                        <img src={extLink['icon']} 
+                                        <img src={extLink['icon']}
+                                            alt={`Logo for ${key}`}
                                             style={{
                                                 height: "48px",
                                                 margin: "4px"
