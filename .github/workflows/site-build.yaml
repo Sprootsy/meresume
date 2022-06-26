@@ -1,5 +1,8 @@
-name: Site Build
-on: [push]
+name: site-build
+on:
+  push:
+    branches-ignore:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
