@@ -7,10 +7,23 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
-      - run:
+          node-version: '18'
+      - name: Install Yarn
+        working-directory: ./web
+        run:
           npm install --global yarn
-          cd web && yarn && yarn test --ci --all --coverage
+      - name: Install dependencies
+        working-directory: ./web
+        run:
+          yarn
+      - name: Test
+        working-directory: ./web
+        run:
+          yarn test --ci --all --coverage
+      - name: Build
+        working-directory: ./web
+        run:
+          yarn build
       - name: Create PR
         uses: funivan/github-autopr@0.2.0
         env:
