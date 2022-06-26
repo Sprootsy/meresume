@@ -1,7 +1,10 @@
-name: site-build
-on: [push]
+name: Site Release
+on:
+  push:
+    tags:
+      - "v*"
 jobs:
-  build:
+  site-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,11 +19,16 @@ jobs:
         working-directory: ./web
         run:
           yarn
-      - name: Test
+      - name: Web Prod Build
         working-directory: ./web
         run:
-          yarn test --ci --all --coverage
-      - name: Create PR
-        uses: funivan/github-autopr@0.2.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          yarn build
+      # https://github.com/marketplace/actions/add-commit
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: '.'
+          author_name: GH Action
+          committer_name: GH Action
+          message: 'Release ${{ env.GITHUB_REF_NAME }}'
+          push: true
+
