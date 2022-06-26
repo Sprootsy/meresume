@@ -17,7 +17,7 @@ export function ContactsBar(props) {
                 Object.keys(props.externalLinks).map((key) => {
                     const extLink = props.externalLinks[key];
                     return (
-                        <List item key={key} xs={4}>
+                        <List key={key} xs={4}>
                             <ListItem>
                                     <Link href={extLink['url']} 
                                         className={"App-logo-link"}
