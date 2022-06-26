@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./web
         run: yarn
-      - name: Web Prod Build
+      - name: Site Release
         working-directory: ./web
         run: yarn build && cp -vrf build/* ../ && rm -rf build
       - name: Commit and Push
@@ -29,7 +29,7 @@ jobs:
           git add .
           git commit -m 'Release ${{ env.GITHUB_REF_NAME }}'
           git push
-          git checkout gh-pages
+          git checkout origin/gh-pages
           git merge --no-ff main -m 'Merge Release ${{ env.GITHUB_REF_NAME }}'
           git push
 
