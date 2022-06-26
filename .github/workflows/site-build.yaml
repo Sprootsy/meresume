@@ -10,8 +10,7 @@ jobs:
           node-version: '14'
       - run:
           npm install --global yarn
-          cd web && yarn
-          yarn test --ci --all --coverage 
+          cd web && yarn && yarn test --ci --all --coverage
       - name: Create PR
         uses: funivan/github-autopr@0.2.0
         env:
