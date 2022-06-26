@@ -29,4 +29,7 @@ jobs:
           git add .
           git commit -m 'Release ${{ env.GITHUB_REF_NAME }}'
           git push
+          git checkout gh-pages
+          git merge --no-ff main -m 'Merge Release ${{ env.GITHUB_REF_NAME }}'
+          git push
 
