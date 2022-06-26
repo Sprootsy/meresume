@@ -1,0 +1,25 @@
+name: Update Dependencies
+on:
+  schedule:
+  # At 12:00 PM, only on Friday
+  - cron: 0 12 * * 5 
+jobs:
+  update-web:
+    name: Update npm packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: |
+          yarn install
+          yarn upgrade
+          yarn audit
+      # https://github.com/marketplace/actions/add-commit
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: 'web'
+          author_name: GH Action
+          committer_name: GH Action
+          push: true
