@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    
 jobs:
   site-release:
     runs-on: ubuntu-latest
