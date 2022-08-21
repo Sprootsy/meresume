@@ -41,6 +41,7 @@ jobs:
           ref: 'gh-pages'
       - name: Merge and Push
         run: |
+          git fetch
           git merge --no-ff origin/main -m 'Merge Release $GITHUB_REF_NAME'
           git push
 
