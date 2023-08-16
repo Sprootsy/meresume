@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "Check branch main contains the tag:  ${{ github.ref_name }}"
           git pull
-          git branch -a --contains " ${{ github.ref_name }}" | egrep '^(. )?main$' || exit 1
+          git branch -a --contains "${{ github.ref_name }}" | egrep '^(. )?main$' || exit 1
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
