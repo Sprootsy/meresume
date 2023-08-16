@@ -15,9 +15,9 @@ jobs:
           fetch-depth: 0
       - name: Check Release Version
         run: |
-          echo "Check branch main contains the tag: $GITHUB_REF_NAME"
+          echo "Check branch main contains the tag:  ${{ github.ref_name }}"
           git pull
-          git branch -a --contains "$GITHUB_REF_NAME" | egrep '^(. )?main$' || exit 1
+          git branch -a --contains "${{ github.ref_name }}" | egrep '^(. )?main$' || exit 1
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -34,15 +34,11 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git checkout main
           git add .
-          git commit --allow-empty -m 'Release $GITHUB_REF_NAME'
-          git push
-      - uses: actions/checkout@v3
-        with:
-          ref: 'gh-pages'
-      - name: Merge and Push
-        run: |
-          git pull
-          git merge --no-ff origin/main -m 'Merge Release $GITHUB_REF_NAME'
-          git push
+          git commit --allow-empty -m 'Release  ${{ github.ref_name }}'
+          git push origin main
+          git checkout gh-pages
+          git merge --no-ff main -m 'Merge release  ${{ github.ref_name }}'
+          git push origin gh-pages
 
