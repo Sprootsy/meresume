@@ -34,7 +34,11 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git checkout main
           git add .
           git commit --allow-empty -m 'Release  ${{ github.ref_name }}'
-          git push
+          git push origin main
+          git checkout gh-pages
+          git merge --no-ff -m 'Merge release  ${{ github.ref_name }}'
+          git push origin gh-pages
 
