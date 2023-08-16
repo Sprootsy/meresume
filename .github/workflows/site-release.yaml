@@ -2,33 +2,47 @@ name: Site Release
 on:
   push:
     tags:
-      - "v*"
+      - "v*.*.*"
+  workflow_dispatch:
+    
 jobs:
   site-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: 'main'
+          fetch-depth: 0
+      - name: Check Release Version
+        run: |
+          echo "Check branch main contains the tag: $GITHUB_REF_NAME"
+          git pull
+          git branch -a --contains "$GITHUB_REF_NAME" | egrep '^(. )?main$' || exit 1
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
       - name: Install Yarn
         working-directory: ./web
-        run:
-          npm install --global yarn
+        run: npm install --global yarn
       - name: Install dependencies
         working-directory: ./web
-        run:
-          yarn
-      - name: Web Prod Build
+        run: yarn
+      - name: Site Release
         working-directory: ./web
-        run:
-          yarn build
-      # https://github.com/marketplace/actions/add-commit
-      - uses: EndBug/add-and-commit@v9
+        run: yarn build && cp -vrf build/* ../ && rm -rf build
+      - name: Commit and Push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit --allow-empty -m 'Release $GITHUB_REF_NAME'
+          git push
+      - uses: actions/checkout@v3
         with:
-          add: '.'
-          author_name: GH Action
-          committer_name: GH Action
-          message: 'Release ${{ env.GITHUB_REF_NAME }}'
-          push: true
+          ref: 'gh-pages'
+      - name: Merge and Push
+        run: |
+          git pull
+          git merge --no-ff origin/main -m 'Merge Release $GITHUB_REF_NAME'
+          git push
 

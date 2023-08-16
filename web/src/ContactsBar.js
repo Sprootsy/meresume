@@ -6,7 +6,7 @@ import './ContactsBar.css';
 
 export const externalLinks = {
     "Github": { "url": "https://github.com/JBerny", "icon": "assets/icons/icons8-github.svg" },
-    "Linkedin": { "url": "https://linkedin.com/in/francesco-bernardi-ams/", "icon": "assets/icons/icons8-linkedin.svg" },
+    "Linkedin": { "url": "https://linkedin.com/in/francesco-bernardi-ams/", "icon": "assets/icons/icons8-linkedin.svg" }
 };
 
 
