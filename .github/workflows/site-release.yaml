@@ -39,6 +39,6 @@ jobs:
           git commit --allow-empty -m 'Release  ${{ github.ref_name }}'
           git push origin main
           git checkout gh-pages
-          git merge --no-ff -m 'Merge release  ${{ github.ref_name }}'
+          git merge --no-ff main -m 'Merge release  ${{ github.ref_name }}'
           git push origin gh-pages
 
