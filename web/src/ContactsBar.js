@@ -5,7 +5,7 @@ import {List, Link, ListItem} from '@mui/material';
 import './ContactsBar.css';
 
 export const externalLinks = {
-    "Github": { "url": "https://github.com/JBerny", "icon": "assets/icons/icons8-github.svg" },
+    "Github": { "url": "https://github.com/Sprootsy", "icon": "assets/icons/icons8-github.svg" },
     "Linkedin": { "url": "https://linkedin.com/in/francesco-bernardi-ams/", "icon": "assets/icons/icons8-linkedin.svg" }
 };
 
