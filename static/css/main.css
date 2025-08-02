@@ -1,0 +1,135 @@
+/* Custom CSS for Retro Game Feel */
+:root {
+  --retro-background: #000080; /* Dark Blue */
+  --retro-text-primary: #00ff00; /* Bright Green */
+  --retro-text-secondary: #ffff00; /* Yellow */
+  --retro-border: #ff00ff; /* Magenta */
+  --retro-accent: #ff0000; /* Red */
+  --retro-button-bg: #008080; /* Teal */
+  --retro-button-text: #ffffff; /* White */
+}
+
+body {
+  font-family: "Inter", sans-serif; /* Smoother, modern font for body */
+  background-color: var(--retro-background);
+  color: var(--retro-text-primary); /* Main text color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  position: relative;
+}
+
+/* Scanline effect */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: 10; /* Above content */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Press Start 2P", cursive; /* Pixelated font for headings */
+  color: var(--retro-text-secondary); /* Headings in vibrant green */
+}
+
+.retro-container {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Semi-transparent black for screen effect */
+  border: 4px solid var(--retro-border);
+  box-shadow: 0 0 20px var(--retro-border),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+  border-radius: 8px; /* Slightly rounded corners */
+  max-width: 90%;
+  width: 800px; /* Max width for content */
+  box-sizing: border-box;
+  position: relative;
+  z-index: 20; /* Below scanlines */
+}
+
+.retro-button {
+  background-color: var(--retro-button-bg);
+  color: var(--retro-button-text);
+  border: 2px solid var(--retro-button-text);
+  padding: 0.75rem 1.5rem;
+  font-family: "Press Start 2P", cursive; /* Pixelated font for buttons */
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  box-shadow: 4px 4px 0px var(--retro-accent); /* 3D effect */
+  border-radius: 4px; /* Slightly rounded for buttons */
+  display: inline-block; /* For proper button sizing */
+}
+
+.retro-button:hover {
+  background-color: var(--retro-accent);
+  color: var(--retro-button-text);
+  box-shadow: 2px 2px 0px var(--retro-button-bg); /* Pressed effect */
+  transform: translate(2px, 2px);
+}
+
+.retro-link {
+  color: var(--retro-text-secondary); /* Links also in vibrant green */
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out;
+}
+
+.retro-link:hover {
+  color: var(--retro-accent);
+}
+
+/* Styles for lists */
+ul {
+  list-style: none; /* Remove default bullet points */
+  padding-left: 1.5rem; /* Indent the list */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  position: relative;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem; /* Space for custom bullet */
+  color: var(--retro-text-primary); /* Ensure list item text is primary color */
+}
+
+li::before {
+  content: "\25B6"; /* Right-pointing triangle as a retro bullet */
+  color: var(--retro-text-secondary); /* Yellow color for the bullet */
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.8em; /* Adjust size of the bullet */
+  line-height: inherit; /* Align with text baseline */
+}
+
+/* Utility classes for layout using Tailwind */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
